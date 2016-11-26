@@ -3,6 +3,7 @@
 
 import tweepy #https://github.com/tweepy/tweepy
 import classify_tweet
+import csv
 
 #Twitter API credentials
 consumer_key = 'eNrLklArTZfWCGr9nP9n1t9KC' # Rahasia, Diubah dulu
@@ -48,7 +49,6 @@ while len(new_tweets) > 0 and tweetCount < maxTweets:
 
 #transform the tweepy tweets into a 2D array that will populate the csv
 outtweets = [[tweet.text, tweet.created_at] for tweet in alltweets] # Pake date time, misalnya
-print(outtweets)
 
 # Kalau mau hanya teks..
 text_tweets = [tweet_text for (tweet_text, tweet_date) in outtweets]
@@ -59,7 +59,14 @@ lalin_tweets = []
 for tweet in text_tweets:
     if classify_tweet.classify_tweet(tweet) == 'lalin':
         lalin_tweets.append(tweet)
+    else:
         print(tweet)
 
 # Gunakan tweet yang berlabel lalin untuk diekstrak informasinya (info extraction)
 # Good luck!
+
+# Ini tweet relevan disimpen
+with open('../data/relevant_tweets.csv', 'w', newline = '') as f:
+    writer = csv.writer(f)
+    for tweet in lalin_tweets:
+        writer.writerow([tweet])
