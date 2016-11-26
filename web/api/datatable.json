@@ -1,0 +1,38 @@
+{ "aaData": [
+	{
+		"waktu": "19:03",
+		"tempat": "Perempatan Gedebage",
+		"arah": "",
+		"kondisi": "Macet"
+	},
+	{
+		"waktu": "21:11",
+		"tempat": "Surapati Core",
+		"arah": "",
+		"kondisi": "Semrawut"
+	},
+	{
+		"waktu": "20:05",
+		"tempat": "Depan RS Advent",
+		"arah": "Cihampelas Walk",
+		"kondisi": "Tidak Bergerak"
+	},
+	{
+		"waktu": "17:27",
+		"tempat": "Jalan Ibrahim Adjie",
+		"arah": "Kiaracondong",
+		"kondisi": "Lancar"
+	},
+	{
+		"waktu": "18:55",
+		"tempat": "Jalan Jakarta",
+		"arah": "",
+		"kondisi": "Ramai Lancar"
+	},
+	{
+		"waktu": "18:36",
+		"tempat": "BTC",
+		"arah": "Tol Pasteur",
+		"kondisi": "Padat Merayap"
+	}
+] }
