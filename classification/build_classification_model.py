@@ -69,9 +69,18 @@ for i in range(num_folds):
     SV_accuracy = nltk.classify.accuracy(SVC_classifier, testing_this_round)
     sum_SV_accuracy += SV_accuracy
 
+    NB_classifier = SklearnClassifier(MultinomialNB())
+    NB_classifier.train(training_this_round)
+    NB_accuracy = nltk.classify.accuracy(NB_classifier, testing_this_round)
+    sum_NB_accuracy += NB_accuracy
+
+
 # find mean accuracy over all rounds
 sum_SV_accuracy /= num_folds
+sum_NB_accuracy /= num_folds
 print ("Total SV accuracy: ", sum_SV_accuracy)
+print ("Total NB accuracy: ", sum_NB_accuracy)
+
 
 f = open('model/my_classifier.pickle', 'wb')
 pickle.dump(SVC_classifier, f)

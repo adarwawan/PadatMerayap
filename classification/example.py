@@ -51,7 +51,8 @@ while len(new_tweets) > 0 and tweetCount < maxTweets:
 outtweets = [[tweet.text, tweet.created_at] for tweet in alltweets] # Pake date time, misalnya
 
 # Kalau mau hanya teks..
-text_tweets = [tweet_text for (tweet_text, tweet_date) in outtweets]
+#text_tweets = [tweet_text for (tweet_text, tweet_date) in outtweets]
+text_tweets = outtweets
 
 # Kalau mau hanya ngambil yang berlabel 'lalin', pake fungsi klasifikasi yang dibuat urang
 lalin_tweets = []
@@ -69,4 +70,7 @@ for tweet in text_tweets:
 with open('../data/relevant_tweets.csv', 'w', newline = '') as f:
     writer = csv.writer(f)
     for tweet in lalin_tweets:
-        writer.writerow([tweet])
+        if (len(tweet) == 1):
+            writer.writerow([tweet])
+        else:
+            writer.writerow(tweet)

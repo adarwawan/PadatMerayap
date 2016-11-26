@@ -29,6 +29,9 @@ def preprocess(tweet):
     # Menggabungkan kata-kata yang akan dibuang dari dataset
     removed_words = punctuations.union(stop)
 
+    if (len(tweet)==2):
+        tweet = tweet[0]
+
     #Convert to lower case
     tweet = ''.join(tweet).lower()
     #Convert www.* or https?://* to URL
