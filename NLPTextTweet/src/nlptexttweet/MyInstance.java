@@ -32,11 +32,11 @@ public class MyInstance {
     }
     
     public void setArah (String n_arah){
-        waktu = n_arah;
+        arah = n_arah;
     }
     
     public void setKondisi (String n_kondisi){
-        waktu = n_kondisi;
+        kondisi = n_kondisi;
     }
     
     public String getWaktu (){

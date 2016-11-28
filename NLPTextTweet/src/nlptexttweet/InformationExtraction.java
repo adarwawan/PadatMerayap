@@ -14,10 +14,10 @@ import java.util.regex.Pattern;
  */
 public class InformationExtraction {
     public static final String REGEX_TIME = "\\d{1,2}[:\\.]\\d{1,2}";
-    public static final String REGEX_PLACE = "(jalan|persimpangan|tol)\\s+\\w+";
-    public static final String REGEX_DESTINATION = "(menuju|ke|arah)[, (]*\\d{1,2}([- /\\.])?([a-zA-Z]+|\\d{1,2})([- /\\.])+\\d{0,4}\\)?";
-    public static final String REGEX_ORIGIN = "(dari)[, (]*\\d{1,2}([- /\\.])?([a-zA-Z]+|\\d{1,2})([- /\\.])+\\d{0,4}\\)?";
-    public static final String REGEX_CONDITION = "(macet|padat merayap|lancar|padat)";
+    public static final String REGEX_PLACE = "(jalan|persimpangan|tol|daerah|jl.|perempatan)\\s+\\w+";
+    public static final String REGEX_DESTINATION = "(menuju|ke|arah|-)\\s+\\w+";
+    public static final String REGEX_ORIGIN = "(dari)\\s+\\w+";
+    public static final String REGEX_CONDITION = "(macet|padat merayap|lancar|padat|semrawut|tidak bergerak|diam|tersendat)";
     
     private String input;
     private MyInstance output;
@@ -47,7 +47,6 @@ public class InformationExtraction {
         String extractedString;
         Pattern pattern = Pattern.compile(REGEX_TIME);
         Matcher matcher = pattern.matcher(input);
-        System.out.println(input);
         
         if (matcher.find()){
             extractedString = matcher.group(0);
@@ -55,7 +54,6 @@ public class InformationExtraction {
             extractedString = "null";
         }
         
-        System.out.println(extractedString);
         output.setWaktu(extractedString);
     }
     
@@ -70,7 +68,6 @@ public class InformationExtraction {
             extractedString = "null";
         }
         
-        System.out.println(extractedString);
         output.setTempat(extractedString);
     }
     
@@ -85,7 +82,6 @@ public class InformationExtraction {
             extractedString = "null";
         }
         
-        System.out.println(extractedString);
         output.setArah(extractedString);
     }
     
@@ -96,13 +92,12 @@ public class InformationExtraction {
         
         if (matcher.find()){
             extractedString = matcher.group(0);
+            output.setArah(output.getTempat());
+            output.setTempat(extractedString);
         } else {
             extractedString = "null";
         }
         
-        System.out.println(extractedString);
-        output.setArah(output.getTempat());
-        output.setTempat(extractedString);
     }
     
     public void extractCondition(){
@@ -116,7 +111,6 @@ public class InformationExtraction {
             extractedString = "null";
         }
         
-        System.out.println(extractedString);
         output.setKondisi(extractedString);
     }
 }

@@ -31,17 +31,24 @@ public class NLPTextTweet {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("a");
         ArrayList<String> data = new ArrayList<>();
+        List<MyInstance> result = new ArrayList<MyInstance>();
+        
         try {
-            System.out.println("b");
             data = (ArrayList<String>) readCSV("preprocessed_data.csv");
             
-            System.out.println("c");
-            getInformation(data.get(1));
+            for (int i = 1 ; i < data.size() ; i++){
+                result.add(getInformation(data.get(i)));
+                
+            }
             
-            System.out.println("d");
-
+            for (int i = 1 ; i < data.size() ; i++){
+                
+                System.out.print(result.get(i).getWaktu());System.out.print(" ");
+                System.out.print(result.get(i).getTempat());System.out.print(" ");
+                System.out.print(result.get(i).getArah());System.out.print(" ");
+                System.out.println(result.get(i).getKondisi());
+            }
         } catch (IOException ex) {
             Logger.getLogger(preprocess.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error 1");
@@ -59,11 +66,10 @@ public class NLPTextTweet {
         IE.extractOrigin();
         IE.extractCondition();
         result = IE.getOutput();
-        System.out.println(result.getWaktu());
-        System.out.println(IE.getOutput().getTempat());
-        System.out.println(IE.getOutput().getArah());
-        System.out.println(IE.getOutput().getKondisi());
-        System.out.println("d");
+//        System.out.print(IE.getOutput().getWaktu());System.out.print(" ");
+//        System.out.print(IE.getOutput().getTempat());System.out.print(" ");
+//        System.out.print(IE.getOutput().getArah());System.out.print(" ");
+//        System.out.println(IE.getOutput().getKondisi());
         return result;
     }
     
